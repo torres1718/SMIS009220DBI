@@ -25,16 +25,13 @@ ON p.CategoryID=c.CategoryID
 SELECT Producto, Categoria, Proveedores FROM listadoProductos ORDER BY Categoria;
 
 
-ALTER VIEW listadoProductos
-AS
-SELECT p.ProductName AS 'Producto',
-c.CategoryName AS 'Categoria',
-o.OrderID AS 'Orden'
-FROM Products p
-INNER JOIN Categories c
-ON p.CategoryID=c.CategoryID
-LEFT JOIN Orders o
-ON p.SupplierID=o.OrderID;
+ALTER VIEW listadoProductos 
+AS 
+SELECT p.ProductName producto, c.CategoryName categoria, o.OrderID Orderid 
+FROM [Order Details] o 
+LEFT JOIN Products p 
+ON o.ProductID =  p.ProductID 
+INNER JOIN Categories c 
+ON p.CategoryID = c.CategoryID;
+SELECT Producto, Categoria, Orderid FROM listadoProductos;
 
-SELECT
-Producto, Categoria, Orden FROM listadoProductos
