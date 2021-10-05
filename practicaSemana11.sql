@@ -25,13 +25,49 @@ ON p.CategoryID=c.CategoryID
 SELECT Producto, Categoria, Proveedores FROM listadoProductos ORDER BY Categoria;
 
 
+--consulta sobre actualizacion y listado de producto, nombre y orderId de datos null y no null
+
 ALTER VIEW listadoProductos 
 AS 
-SELECT p.ProductName producto, c.CategoryName categoria, o.OrderID Orderid 
+SELECT p.ProductName AS 'producto',
+
+c.CategoryName AS 'categoria',
+
+o.OrderID AS 'Orderid' 
+
 FROM [Order Details] o 
-LEFT JOIN Products p 
-ON o.ProductID =  p.ProductID 
-INNER JOIN Categories c 
-ON p.CategoryID = c.CategoryID;
-SELECT Producto, Categoria, Orderid FROM listadoProductos;
+
+LEFT JOIN Products p ON o.ProductID =  p.ProductID 
+
+INNER JOIN Categories c ON p.CategoryID = c.CategoryID;
+
+SELECT producto, categoria, Orderid FROM listadoProductos;
+
+
+ALTER VIEW listadoProductos
+AS
+SELECT p.ProductName AS 'producto',
+
+c.CategoryName AS 'categoria',
+
+o.OrderID AS 'Orderid'
+
+FROM [Order Details] O
+FULL JOIN Products p ON o.ProductID =  p.ProductID 
+
+FULL JOIN Categories c ON p.CategoryID = c.CategoryID;
+
+SELECT producto, categoria, Orderid FROM listadoProductos ORDER BY categoria;
+
+
+
+
+
+
+
+
+
+
+
+
 
